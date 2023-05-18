@@ -1,0 +1,26 @@
+type Band @key(fields: "bandId name genre") {
+	"""
+	Unique ID for a single band
+	"""
+	bandId: Int
+	"""
+	Name of the band
+	"""
+	name: String
+	"""
+	Genre of the band
+	"""
+	genre: String
+	"""
+	Members of this mythical band
+	"""
+	bandMembers: [BandMember]
+}
+
+type BandMember {
+	firstName: String
+
+	familyName: String
+
+	instrument: String
+}

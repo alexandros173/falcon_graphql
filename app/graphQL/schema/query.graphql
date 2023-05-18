@@ -1,0 +1,20 @@
+type Query {
+    """
+        Get Bands information
+    """
+    getMusicalBandsInformation(item: BandItem): Band
+}
+
+
+input BandItem {
+	"""
+	ID of band we want to retrieve
+	"""
+	bandId: String
+
+    """
+    Name of the cult band we want to retrieve
+    """
+    bandName:  String
+
+}

@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "771885f3-3cb4-4d57-abc6-aea8cfc0686b",
+		"name": "Python-GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Band information",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n    getMusicalBandsInformation(\n        item: { bandName: \"Muse\" }\n    ) \n    {\n        bandId, \n        name,\n        genre,\n        bandMembers {\n            firstName,\n            familyName,\n            instrument\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:80",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "80"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

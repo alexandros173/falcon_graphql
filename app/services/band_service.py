@@ -1,5 +1,5 @@
 from typing import Dict
-
+import logging
 from sqlalchemy.sql.expression import select
 from sqlalchemy.engine.row import Row
 from app.infrastructure.postgres.postgres_connection import PostgresConnection
@@ -29,7 +29,6 @@ class BandService:
                     .where(Instrument.instrument_id == Member.instrument_id)\
                     .where(Band.genre_id == Genre.genre_id)
 
-                print(f'inside service: {query}')
                 result = session.execute(query)
 
                 band_information = None
@@ -37,14 +36,12 @@ class BandService:
                     if not band_information:
                         band = item[0]
                         band_information = BandInformation(band.band_id, band.band_name, item[4], [])
-                        print(f'band info: {type(band_information)}')
 
-                    print(f'second band info: {type(band_information.band_members)}')
                     band_information.band_members.append(self.convert_members_for_gql(row=item))
 
                 return band_information
         except Exception as e:
-            print(f'Could not get band information: {e}')
+            logging.error(f'Could not get band information: {e}')
 
     def _create_tables(self) -> None:
         """
@@ -56,8 +53,6 @@ class BandService:
         Instrument.__table__.create(bind=engine, checkfirst=True)
         Band.__table__.create(bind=engine, checkfirst=True)
         Member.__table__.create(bind=engine, checkfirst=True)
-
-        print(f'meta: {Genre.__tablename__}')
 
     def convert_members_for_gql(self, row: Row) -> BandMember:
         """

@@ -1,6 +1,6 @@
 import math
 import time
-
+import logging
 from falcon import Response, Request
 
 
@@ -10,8 +10,8 @@ class AccessMiddleware:
         resp.set_header('timer', str(time.time()))
 
     async def process_response(self, req: Request, resp: Response, resource: object, params: dict) -> None:
-
-        print(
+        logging.info(
+            req,
             req.get_header('x-request-id'), req.access_route[0],
             req.method, req.relative_uri, req.get_header('User-Agent'),
             int(resp.status[:3]), len(str(resp.media)),

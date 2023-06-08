@@ -4,7 +4,6 @@ from graphql import GraphQLSchema
 
 from app.access_middleware import AccessMiddleware
 from app.graphQL.falcon_graphql import GraphQLResource
-from config.general import Config
 
 
 class Healthcheck:
@@ -23,6 +22,5 @@ def start_server(schema: GraphQLSchema):
     graphql_server = GraphQLResource(schema)
 
     api.add_route('/', graphql_server)
-    # api.add_route('/graphql', GraphQLPlaygound())
 
     return api

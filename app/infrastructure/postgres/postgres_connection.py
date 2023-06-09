@@ -2,7 +2,7 @@ from contextlib import contextmanager
 
 from config.general import Config
 
-from sqlalchemy import create_engine, MetaData
+from sqlalchemy import create_engine
 from sqlalchemy.engine.base import Engine
 from sqlalchemy.orm import Session
 

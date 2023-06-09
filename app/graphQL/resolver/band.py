@@ -14,11 +14,8 @@ band_schema = ObjectType("Band")
 @query.field("getMusicalBandsInformation")
 @convert_kwargs_to_snake_case
 @inject
-def get_bands_information(
-        obj, info: GraphQLResolveInfo, item, filter={},
-        bands_service=Provide[AppContainer.services.band_service]) -> BandInformation:
-    key_list = []
-
+def get_bands_information(item,
+                          bands_service=Provide[AppContainer.services.band_service]) -> BandInformation:
     try:
         return bands_service.get_bands_information(item)
     except Exception as e:

@@ -24,7 +24,7 @@ class Server:
 
         return make_federated_schema(type_defs, resolvers, snake_case_fallback_resolvers)
 
-    def start(self, config: Config, schema: GraphQLSchema = None):
+    def start(self, schema: GraphQLSchema = None):
         graphql_schema = schema
         try:
             if graphql_schema is None:

@@ -45,6 +45,6 @@ config = Config()
 container = build_app_container(config)
 
 server = Server()
-api = server.start(container.config)
+api = server.start()
 
 atexit.register(on_exit_app)
